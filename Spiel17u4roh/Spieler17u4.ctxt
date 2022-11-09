@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=Spieler17u4
+comment0.text=\ Projekt\:\ Spiel17u4roh\r\n\ \ Klasse\ \ \ Spieler17u4\ \r\n\ \ @author\ \ Info1;\ thh\r\n\ \ @version\ 221010\ -\ roh\r\n
+comment1.params=
+comment1.target=Spieler17u4()
+comment1.text=\ Konstruktor\:\ erzeugt\ neue\ Objekte\ der\ Klasse\ Spieler17u4\ \r\ndabei\ werden\ die\ Anfangswerte\ festgelegt
+comment2.params=
+comment2.target=int\ getWurf()
+comment2.text=\ den\ Wert\ des\ aktuellen\ Wurfes\ nennen\ \r\n
+comment3.params=
+comment3.target=int\ getStand()
+comment4.params=
+comment4.target=void\ spieleRunde()
+comment4.text=\ eine\ Runde\ spielen;\ das\ bedeutet\:\ wuerfeln\ mit\ normalem\ W6,\ \r\n\ \ Wurfergebnis\ merken,\ den\ Stand\ erh\u00F6hen,\ ebenfalls\ merken,\ ....\ \r\n\ \ Tragen\ Sie\ die\ korrekten\ Zeilen\ ein.\ vgl.\ Aufgabe\ 7;\ \ \r\nAllerdings\:\ danach\ fehlt\ noch\ etliches\ \!
+comment5.params=
+comment5.target=int\ wuerfle()
+comment5.text=\ interne\ Routine\:\ das\ Wurfergebnis\ eines\ \r\nWurfes\ mit\ einem\ normalen\ W6\ zur\u00FCckmelden
+comment6.params=
+comment6.target=boolean\ istFertig()
+comment6.text=\ zur\u00FCckmelden,\ \r\nob\ der\ Spieler\ aufgeh\u00F6rt\ hat\ oder\ nicht
+comment7.params=
+comment7.target=void\ hoereAuf()
+numComments=8
