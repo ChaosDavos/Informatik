@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=CentralServer
+comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ CentralServer.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
+comment1.params=
+comment1.target=CentralServer()
+comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ CentralServer\r\n
+comment2.params=people\ money\ disp
+comment2.target=void\ createAccount(java.lang.String[],\ int,\ int)
+comment3.params=IBAN
+comment3.target=Konto\ getAccount(java.lang.String)
+comment4.params=myIBAN\ IBAN\ amount
+comment4.target=int\ transfer(java.lang.String,\ java.lang.String,\ int)
+comment5.params=
+comment5.target=java.lang.String\ generateIBAN()
+comment6.params=
+comment6.target=java.lang.String\ getBIC()
+numComments=7

@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Transfer
+comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Transfer.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
+comment1.params=money\ from\ to
+comment1.target=Transfer(int,\ java.lang.String[],\ java.lang.String[])
+comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ Transfer\r\n
+comment2.params=
+comment2.target=java.lang.String\ getReceiverIBAN()
+comment3.params=
+comment3.target=java.lang.String\ getSenderIBAN()
+comment4.params=
+comment4.target=int\ getAmount()
+numComments=5
