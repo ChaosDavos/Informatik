@@ -1,9 +1,11 @@
 #BlueJ class context
 comment0.target=Konto
 comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Bankkonto.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
-comment1.params=people\ money\ disp\ caller\ _IBAN\ _BIC
-comment1.target=Konto(java.lang.String[],\ int,\ int,\ java.lang.Object,\ java.lang.String,\ java.lang.String)
+comment1.params=person\ money\ disp\ caller\ _IBAN\ _BIC
+comment1.target=Konto(java.lang.String,\ int,\ int,\ java.lang.Object,\ java.lang.String,\ java.lang.String)
 comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ Bankkonto\r\n
+comment10.params=amount\ caller
+comment10.target=void\ setMaxTransfer(int,\ java.lang.Object)
 comment2.params=money
 comment2.target=void\ withdraw(int)
 comment3.params=money
@@ -12,7 +14,6 @@ comment4.params=money\ to
 comment4.target=Transfer\ createTransfer(int,\ java.lang.String[])
 comment5.params=caller
 comment5.target=void\ lock(java.lang.Object)
-comment5.text=private\ boolean\ transfer(Transfer\ transfer){\r\n\ \ \ \ \ \ \ \ if(transfer.getReceiverIBAN()\ \=\=\ IBAN)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ amount\ +\=\ transfer.getAmount();\r\n\ \ \ \ \ \ \ \ \ \ \ \ return\ true;\r\n\ \ \ \ \ \ \ \ }\ else\ if(transfer.getSenderIBAN()\ \=\=\ IBAN)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ if\ (amount\ >\=\ transfer.getAmount()){\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ amount\ -\=\ transfer.getAmount();\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ true;\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \ \ \ \ return\ false;\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ return\ false;\r\n}*
 comment6.params=caller
 comment6.target=void\ unlock(java.lang.Object)
 comment7.params=caller
@@ -21,4 +22,4 @@ comment8.params=
 comment8.target=java.lang.String[]\ getKontoauszug()
 comment9.params=
 comment9.target=int\ getBalance()
-numComments=10
+numComments=11

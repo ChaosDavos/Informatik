@@ -11,7 +11,7 @@ public class Konto implements IStorage
     private int amount = 0;
     private boolean isLocked= false;
     private int maxDispo;
-    private String[] owners;
+    private String owner;
     private int maxWithdraw;
     private int maxTransfer;
     private String password;
@@ -28,10 +28,11 @@ public class Konto implements IStorage
     /**
      * Konstruktor für Objekte der Klasse Bankkonto
      */
-    public Konto( String[] people, int money, int disp, Object caller, String _IBAN, String _BIC)
+    public Konto( String person, int money, int disp, Object caller, String _IBAN, String _BIC)
     {
         // Instanzvariable initialisieren
-        owners = people;
+        maxTransfer = 0;
+        owner = person;
         amount = money;
         isLocked = false;
         maxDispo = disp;
@@ -41,7 +42,7 @@ public class Konto implements IStorage
 
     public void withdraw(int money)
     {
-        if(amount >= money){
+        if((amount + maxDispo) >= money){
             amount -= money;
         }
     }
@@ -56,41 +57,37 @@ public class Konto implements IStorage
             String[] personal = new String[3];
             personal[0]= IBAN;
             personal[1] = BIC;
-            personal[2] = owners[0];
-            if(amount < money){
+            personal[2] = owner;
+            if(amount < (money + maxDispo) ){
                 throw new Exception();
             }
             Transfer transfer = new Transfer(money, personal, to);
             amount -= transfer.getAmount();
+            transferHistory.add(transfer);
             return transfer;
             }
             throw new Exception();
         } catch(Exception ex){
-            
+            CentralServer.sendDialogue("Zu wenig Geld auf dem Konto");
         }
         String[] ex = new String[3];
         return new Transfer(0, ex, ex);
     }
     
-    /**private boolean transfer(Transfer transfer){
-        if(transfer.getReceiverIBAN() == IBAN) {
-            amount += transfer.getAmount();
-            return true;
-        } else if(transfer.getSenderIBAN() == IBAN) {
-            if (amount >= transfer.getAmount()){
-               amount -= transfer.getAmount();
-               return true;
-            }
-            return false;
-        }
-        return false;
-    }**/
-    
     public void lock(Object caller){
-        
+        if(caller instanceof CentralServer){
+            
+        } else {
+            CentralServer.sendDialogue("No permission!");
+        }
     }
     
     public void unlock(Object caller){
+        if(caller instanceof CentralServer){
+            
+        } else {
+            CentralServer.sendDialogue("No permission!");
+        }
         
     }
     public String[] getPersonalInfo(Object caller){
@@ -103,5 +100,11 @@ public class Konto implements IStorage
     
     public int getBalance(){
         return amount;
+    }
+    
+    public void setMaxTransfer(int amount, Object caller){
+    if(caller instanceof CentralServer){
+        maxTransfer = amount;
+    }
     }
 }
