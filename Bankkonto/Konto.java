@@ -28,83 +28,97 @@ public class Konto implements IStorage
     /**
      * Konstruktor für Objekte der Klasse Bankkonto
      */
-    public Konto( String person, int money, int disp, Object caller, String _IBAN, String _BIC)
+    public Konto( String person, int money, int disp, Object caller, String _IBAN, String _BIC, int _maxTransfer, String code)
     {
         // Instanzvariable initialisieren
-        maxTransfer = 0;
+        maxTransfer = _maxTransfer;
         owner = person;
         amount = money;
         isLocked = false;
         maxDispo = disp;
         IBAN = _IBAN;
         BIC = _BIC;
+        password = code;
     }
 
     public void withdraw(int money)
     {
-        if((amount + maxDispo) >= money){
+        if((amount + maxDispo) >= money || (money > maxTransfer && maxTransfer != 0)){
             amount -= money;
         }
     }
 
     public void deposit(int money){
-        amount += money;
+        if((money > maxTransfer && maxTransfer != 0)){
+            amount += money; 
+        }
     }
-    
+
     public Transfer createTransfer(int money, String[] to){
         try {
             if(to.length == 3){
-            String[] personal = new String[3];
-            personal[0]= IBAN;
-            personal[1] = BIC;
-            personal[2] = owner;
-            if(amount < (money + maxDispo) ){
-                throw new Exception();
+                String[] personal = new String[3];
+                personal[0]= IBAN;
+                personal[1] = BIC;
+                personal[2] = owner;
+                if( ((amount + maxDispo) < money) || (money > maxTransfer && maxTransfer != 0)){
+                    throw new Exception("Insufficient funds or amount too large");
+                }
+                Transfer transfer = new Transfer(money, personal, to);
+                amount -= transfer.getAmount();
+                transferHistory.add(transfer);
+                return transfer;
             }
-            Transfer transfer = new Transfer(money, personal, to);
-            amount -= transfer.getAmount();
-            transferHistory.add(transfer);
-            return transfer;
-            }
-            throw new Exception();
+            throw new Exception("Invalid sender data");
         } catch(Exception ex){
-            CentralServer.sendDialogue("Zu wenig Geld auf dem Konto");
+            CentralServer.sendDialogue(ex.getMessage());
         }
         String[] ex = new String[3];
         return new Transfer(0, ex, ex);
     }
-    
+
     public void lock(Object caller){
         if(caller instanceof CentralServer){
-            
+
         } else {
             CentralServer.sendDialogue("No permission!");
         }
     }
-    
+
     public void unlock(Object caller){
         if(caller instanceof CentralServer){
-            
+
         } else {
             CentralServer.sendDialogue("No permission!");
         }
-        
+
     }
+
     public String[] getPersonalInfo(Object caller){
         return new String[2];
     }
-    
+
     public String[] getKontoauszug(){
         return this.getPersonalInfo(this);
     }
-    
+
     public int getBalance(){
         return amount;
     }
     
-    public void setMaxTransfer(int amount, Object caller){
-    if(caller instanceof CentralServer){
-        maxTransfer = amount;
+    public boolean isCorrectPwd(String pwd){
+        if(pwd == password){
+            return true;
+        }
+        return false;
     }
+    public void setMaxTransfer(int amount, Object caller){
+        if(caller instanceof CentralServer){
+            maxTransfer = amount;
+        }
+    }
+    
+    public boolean isLocked(){
+        return isLocked;
     }
 }
